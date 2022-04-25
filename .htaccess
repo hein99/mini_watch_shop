@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /mini_watch_shop/
+
+RewriteRule ^(\w+)/(\w+)/(\w+)/(\w+)/?$ route.php?first-query=$1&second-query=$2&third-query=$3&fourth-query=$4 [L,QSA]
+RewriteRule ^(\w+)/(\w+)/(\w+)/?$ route.php?first-query=$1&second-query=$2&third-query=$3 [L,QSA]
+RewriteRule ^(\w+)/(\w+)/?$ route.php?first-query=$1&second-query=$2 [L,QSA]
+RewriteRule ^(\w+)/?$ route.php?first-query=$1 [L,QSA]
+RewriteRule ^/?$ route.php?first-query=home [L,QSA]
