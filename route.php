@@ -7,7 +7,7 @@ include('common.inc.php');
  * In general, URL Patterns is /resource/action/id
  * But for admin's access page, /admin/ is added befor /resourse/action/id
  * 
- * /home
+ * /home #
  * /products
  * /products/detail/id
  * /orders/add
@@ -16,7 +16,8 @@ include('common.inc.php');
  * /orders/update
  * /orders/track?code=SOMETHINGS
  * 
- * /admin/orders/
+ * /admin #
+ * /admin/orders
  * /admin/orders/detail/id
  * /admin/orders/edit/id
  * /admin/orders/update
@@ -27,8 +28,16 @@ include('common.inc.php');
  * /admin/products/edit/id
  * /admin/products/update
  * /admin/banners/
- * /admin/baneers/add
- * /admin/baneers/delete/id
+ * /admin/banners/add
+ * /admin/banners/delete/id
+ * /admin/admins/ #
+ * /admin/admins/create #
+ * /admin/admins/edit/id #
+ * /admin/admins/delete/id #
+ * 
+ * /auth #
+ * /auth/login #
+ * /auth/logout #
  * 
  */
 
@@ -48,15 +57,30 @@ if(isset($_GET['second-query']) and $_GET['second-query']) {
     }
 }
 
+// for id in url('/admin/admins/edit/3)
+$fourth_query = isset($_GET['fourth-query']) ? $_GET['fourth-query'] : '';
+
 $routes = [ 
-    '/home' => 'Controllers\Home::home',
+    '/home' => 'Controllers\HomeController::home',
+    '/auth' => 'Controllers\AdminController::login',
+    '/auth/login' => 'Controllers\AdminController::login',
+    '/auth/logout' => 'Controllers\AdminController::logout',
+    '/admin/admins' => 'Controllers\AdminController::list',
+    '/admin/admins/create' => 'Controllers\AdminController::create',
+    '/admin/admins/edit/' . $fourth_query => 'Controllers\AdminController::edit',
+    '/admin/admins/delete/' . $fourth_query => 'Controllers\AdminController::delete',
+    '/admin' => 'Controllers\OrderController::show',
 ];
 
 // if $route_string is in $routes, call respective controller's respective function
 if(array_key_exists($route_string, $routes)) {
+
+    // if $route_string is begin with '/admin' check login 
+    if(preg_match("/^\/admin/", $route_string)) {
+       checkLogin();
+    }
    $routes[$route_string]();
 } else {
-    echo 'Oh, no!';
+    die('404');
 }
-
 

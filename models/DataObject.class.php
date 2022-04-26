@@ -1,6 +1,9 @@
 <?php
 namespace Models;
 
+use PDO;
+use PDOException;
+
 abstract class DataObject
 {
     protected $data = [];
@@ -12,7 +15,7 @@ abstract class DataObject
     }
 
     public function getValue($field) {
-        if(array_key_exists($key, $this->data)) 
+        if(array_key_exists($field, $this->data)) 
             return $this->data[$field];
         else 
             die('Field not found');
@@ -26,7 +29,9 @@ abstract class DataObject
         try {
             $conn = new PDO('mysql:host=' . DB_HOST . ';dbname=' . DB_NAME, DB_USERNAME, DB_PASSWORD);
             $conn->setAttribute(PDO::ATTR_PERSISTENT, true);
-            $conn->setAttribute(PDP::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            return $conn;
         } catch(PDOException $e) {
             die("Connection failed: " . $e->getMessage());
         }
