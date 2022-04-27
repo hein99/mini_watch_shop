@@ -172,7 +172,6 @@ class Admin extends DataObject
             $statement->execute();
 
             parent::disconnect($conn);
-            echo 'Query: ' . $sql;
         } catch(PDOException $e) {
             die('Query failed: ' . $e->getMessage());
         }

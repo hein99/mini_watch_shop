@@ -4,11 +4,15 @@ include('config.php');
 include('controllers/AdminController.class.php');
 include('controllers/HomeController.class.php');
 include('controllers/OrderController.class.php');
+include('controllers/ProductController.class.php');
 
 
 include('models/DataObject.class.php');
 include('models/Admin.class.php');
 include('models/Banner.class.php');
+include('models/Category.class.php');
+include('models/Product.class.php');
+
 
 /**
  * ---------------------------------------------------------------------------
@@ -105,9 +109,9 @@ function displayAdminPageHeader($title, $nav_link)
                     <?php endif; ?>
 
                     <?php if($nav_link == 'watches') : ?>
-                        <li><a href="#" class="active">Watches</a></li>
+                        <li><a href="#" class="active">Products</a></li>
                     <?php else : ?>
-                        <li><a href="<?php echo APP_URL ?>admin/watches">Watches</a></li>
+                        <li><a href="<?php echo APP_URL ?>admin/products">Products</a></li>
                     <?php endif; ?>
                     
                     <?php if($nav_link == 'admins') : ?>

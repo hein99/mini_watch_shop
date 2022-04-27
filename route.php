@@ -62,14 +62,48 @@ $fourth_query = isset($_GET['fourth-query']) ? $_GET['fourth-query'] : '';
 
 $routes = [ 
     '/home' => 'Controllers\HomeController::home',
+    /**
+     * -------------------------------------
+     * Authentication routes for page admin
+     * -------------------------------------
+     * login and logout for admin's area
+     * 
+     */
     '/auth' => 'Controllers\AdminController::login',
     '/auth/login' => 'Controllers\AdminController::login',
     '/auth/logout' => 'Controllers\AdminController::logout',
+
+    /**
+     * -------------------------
+     * Page Admins' area routes
+     * -------------------------
+     * Display Page Admins list
+     * Only id(1) admin in database can create new admin, edit other admins information and delete other admins
+     * 
+     */
     '/admin/admins' => 'Controllers\AdminController::list',
     '/admin/admins/create' => 'Controllers\AdminController::create',
     '/admin/admins/edit/' . $fourth_query => 'Controllers\AdminController::edit',
     '/admin/admins/delete/' . $fourth_query => 'Controllers\AdminController::delete',
+
+    /**
+     * ---------------------
+     * Orders' area routes
+     * ---------------------
+     * 
+     */
     '/admin' => 'Controllers\OrderController::show',
+
+    /**
+     * ---------------------
+     * Watches' area routes
+     * ---------------------
+     * 
+     */
+    '/admin/products' => 'Controllers\ProductController::list',
+    '/admin/products/create_category' => 'Controllers\ProductController::createCategory',
+    '/admin/products/edit_category/' . $fourth_query => 'Controllers\ProductController::editCategory',
+    '/admin/products/delete_category/' . $fourth_query => 'Controllers\ProductController::deleteCategory',
 ];
 
 // if $route_string is in $routes, call respective controller's respective function
@@ -83,4 +117,3 @@ if(array_key_exists($route_string, $routes)) {
 } else {
     die('404');
 }
-
