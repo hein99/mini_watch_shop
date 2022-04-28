@@ -21,10 +21,17 @@ include('models/Product.class.php');
  * 
  */
 
-function validateField( $field_name, $missing_fields ) {
-    if( in_array( $field_name, $missing_fields ) ) echo ' class="error"';
+function validateField($field_name, $missing_fields) {
+    if(in_array($field_name, $missing_fields)) echo ' class="error"';
 }
 
+function setChecked(Models\DataObject $obj, $field_name, $field_value) {
+    if($obj->getValue($field_name) == $field_value) echo ' checked="checked"';
+}
+
+function setSelected(Models\DataObject $obj, $field_name, $field_value) {
+    if($obj->getValue($field_name) == $field_value) echo ' selected="selected"';
+}
 
 /**
  * ---------------------------------------

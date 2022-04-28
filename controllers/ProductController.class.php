@@ -20,7 +20,6 @@ class ProductController
         ]);
     }
 
-
     /**
      * ---------------------------------------------------------------------------------
      * Display category create form or process creating category when form is submitted
@@ -199,6 +198,16 @@ class ProductController
     }
 
 
+    /**
+     * --------------------------------------------------------------------
+     * Display confirm form to delete category or process deleting process
+     * --------------------------------------------------------------------
+     * When category will be deleted, category's thumbnail should be deleted 
+     * and category's respective products should be deleted. 
+     * So, admin should notice the effect of deleting category and confirm to delete 
+     * by typing this text 'I am sure. Delete this category and its respective data.'
+     * 
+     */
     public static function deleteCategory()
     {
         if(isset($_GET['fourth-query']) and $_GET['fourth-query']) {
@@ -247,6 +256,170 @@ class ProductController
                     'error_messages' => [],
                 ]);
             }
+        } else {
+            header('location: ' . APP_URL . 'admin/products');
+        }
+    }
+
+    public static function create()
+    {
+        if(isset($_POST['action']) and $_POST['action'] == 'Create') {
+            $required_fields = ['name', 'description', 'category_id', 'price', 'discount_percentage', 'is_out_of_stock'];
+            $missing_fields = [];
+            $error_messages = [];
+
+            $product = new Product([
+                'name' => isset($_POST['name']) ? preg_replace('/[^ \-\_a-zA-Z0-9]/', '', $_POST['name']) : '',
+                'description' => isset($_POST['description']) ? $_POST['description'] : '',
+                'category_id' => isset($_POST['category_id']) ? preg_replace('/[^0-9]/', '', $_POST['category_id']) : '',
+                'price' => isset($_POST['price']) ? preg_replace('/[^0-9]/', '', $_POST['price']) : '',
+                'discount_percentage' => isset($_POST['discount_percentage']) ? preg_replace('/[^0-9]/', '', $_POST['discount_percentage']) : '',
+                'is_out_of_stock' => isset($_POST['is_out_of_stock']) ? ($_POST['is_out_of_stock']) : '',
+            ]);
+
+            foreach($required_fields as $required_field) {
+                if($product->getValue($required_field) === '') $missing_fields[] = $required_field;
+            }
+
+            if($missing_fields) {
+                $error_messages[] = 'There were some missing fields in the form you have submitted. 
+                Please complete the required information and click create again.';
+            }
+
+            if($error_messages) {
+                $categories = Category::getAll();
+                loadView('admin/products/create', [
+                    'categories' => $categories,
+                    'product' => $product,
+                    'missing_fields' => $missing_fields,
+                    'error_messages' => $error_messages,
+                ]);
+            } else {
+                $product->insert();
+                header('location: ' . APP_URL . 'admin/products');
+            }
+
+        } else {
+            $categories = Category::getAll();
+            loadView('admin/products/create', [
+                'categories' => $categories,
+                'product' => new Product([]),
+                'missing_fields' => [],
+                'error_messages' => [],
+            ]);
+        }
+    }
+
+    public static function edit()
+    {
+        if(isset($_GET['fourth-query']) and $_GET['fourth-query']) {
+            if(isset($_POST['action']) and $_POST['action'] == 'Edit') {
+                $required_fields = [ 'id', 'name', 'description', 'category_id', 'price', 'discount_percentage', 'is_out_of_stock'];
+                $missing_fields = [];
+                $error_messages = [];
+
+                $product = new Product([
+                    'id' => isset($_POST['id']) ? preg_replace('/[^0-9]/', '', $_POST['id']) : '',
+                    'name' => isset($_POST['name']) ? preg_replace('/[^ \-\_a-zA-Z0-9]/', '', $_POST['name']) : '',
+                    'description' => isset($_POST['description']) ? $_POST['description'] : '',
+                    'category_id' => isset($_POST['category_id']) ? preg_replace('/[^0-9]/', '', $_POST['category_id']) : '',
+                    'price' => isset($_POST['price']) ? preg_replace('/[^0-9]/', '', $_POST['price']) : '',
+                    'discount_percentage' => isset($_POST['discount_percentage']) ? preg_replace('/[^0-9]/', '', $_POST['discount_percentage']) : '',
+                    'is_out_of_stock' => isset($_POST['is_out_of_stock']) ? ($_POST['is_out_of_stock']) : '',
+                ]);
+
+                foreach($required_fields as $required_field) {
+                    if($product->getValue($required_field) === '') $missing_fields[] = $required_field;
+                }
+
+                if($missing_fields) {
+                    $error_messages[] = 'There were some missing fields in the form you have submitted. 
+                    Please complete the required information and click edit again.';
+                }
+
+                if($error_messages) {
+                    $existing_product = Product::getProduct($product->getValue('id'));
+                    $categories = Category::getAll();
+                    loadView('admin/products/create', [
+                        'categories' => $categories,
+                        'product' => $existing_product,
+                        'missing_fields' => $missing_fields,
+                        'error_messages' => $error_messages,
+                    ]);
+                } else {
+                    $product->update();
+                    header('location: ' . APP_URL . 'admin/products');
+                }
+
+            } else {
+                $existing_product = Product::getProduct($_GET['fourth-query']);
+                $categories = Category::getAll();
+                loadView('admin/products/edit', [
+                    'categories' => $categories,
+                    'product' => $existing_product,
+                    'missing_fields' => [],
+                    'error_messages' => [],
+                ]);
+            }
+        } else {
+            header('location: ' . APP_URL . 'admin/products');
+        }
+    }
+
+    public static function addPhoto()
+    {
+        if(isset($_POST['id']) and $_POST['id']) {
+            if(isset($_POST['action']) and $_POST['action'] == 'Add Photo') {
+                $existing_product = Product::getProduct($_POST['id']);
+
+                $name = $_FILES['photo']['name'];
+                $tmp = $_FILES['photo']['tmp_name'];
+                $type = $_FILES['photo']['type'];
+
+                if($type == 'image/jpeg') {
+                    $destination_file = '';
+
+                    if((int)$existing_product->getValue('photo_qty') > 0)
+                        $destination_file = $existing_product->getValue('photo_name');
+                    else
+                        $destination_file = 'resources/images/products/' . strtolower(preg_replace('/[^ _a-zA-Z0-9]/', '', $existing_product->getValue('name'))) . '_';
+
+                    $product = new Product([
+                        'id' => $_POST['id'],
+                        'photo_qty' => (int)$existing_product->getValue('photo_qty') + 1,
+                        'photo_name' => $destination_file,
+                    ]);
+
+                    $destination_file .= (int)$existing_product->getValue('photo_qty') . '.jpg';
+                    move_uploaded_file($tmp, $destination_file);
+
+                    $product->updatePhoto();
+                    header('location: ' . APP_URL . 'admin/products/edit/' . $existing_product->getValue('id'));
+                }
+            }
+        }
+        header('location: ' . APP_URL . 'admin/products');
+    }
+
+    public static function deleteAllPhotos()
+    {
+        if(isset($_GET['fourth-query']) and $_GET['fourth-query']) {
+            $existing_product = Product::getProduct($_GET['fourth-query']);
+            if((int)$existing_product->getValue('photo_qty') > 0) {
+                for($i=0; $i < $existing_product->getValue('photo_qty'); $i++) {
+                    $photo_file = $existing_product->getValue('photo_name') . $i . '.jpg';
+                    if(file_exists($photo_file) and !is_dir($photo_file))
+                        unlink($photo_file);
+                }
+            }
+            $product = new Product([
+                'id' => $_GET['fourth-query'],
+                'photo_qty' => 0,
+                'photo_name' => '',
+            ]);
+
+            $product->updatePhoto();
+            header('location: ' . APP_URL . 'admin/products/edit/' . $existing_product->getValue('id'));
         } else {
             header('location: ' . APP_URL . 'admin/products');
         }

@@ -104,6 +104,10 @@ $routes = [
     '/admin/products/create_category' => 'Controllers\ProductController::createCategory',
     '/admin/products/edit_category/' . $fourth_query => 'Controllers\ProductController::editCategory',
     '/admin/products/delete_category/' . $fourth_query => 'Controllers\ProductController::deleteCategory',
+    '/admin/products/create' => 'Controllers\ProductController::create',
+    '/admin/products/edit/' . $fourth_query => 'Controllers\ProductController::edit',
+    '/admin/products/add_photo' => 'Controllers\ProductController::addPhoto',
+    '/admin/products/delete_photos/' . $fourth_query => 'Controllers\ProductController::deleteAllPhotos',
 ];
 
 // if $route_string is in $routes, call respective controller's respective function
