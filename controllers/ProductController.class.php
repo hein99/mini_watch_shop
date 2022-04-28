@@ -229,6 +229,15 @@ class ProductController
                 }
 
                 if(!$error_messages and isset($_POST['confirm-text']) and $_POST['confirm-text'] === 'I am sure. Delete this category and its respective data.') {
+                    $products = Product::getByCategoryID($category->getValue('id'));
+                    foreach($products as $product) {
+                        for($i=0; $i<$product->getValue('photo_qty'); $i++) {
+                            $file = $product->getValue('photo_name') . $i . '.jpg';
+
+                            if(file_exists($file) and !is_dir($file))
+                                unlink($file);
+                        }
+                    }
                     Product::deleteByCategoryID($category->getValue('id'));
 
                     $existing_category = Category::getCategory($category->getValue('id'));

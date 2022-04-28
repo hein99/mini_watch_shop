@@ -2,6 +2,7 @@
 include('config.php');
 
 include('controllers/AdminController.class.php');
+include('controllers/BannerController.class.php');
 include('controllers/HomeController.class.php');
 include('controllers/OrderController.class.php');
 include('controllers/ProductController.class.php');
@@ -99,7 +100,7 @@ function displayAdminPageHeader($title, $nav_link)
         ?>
             <header>
                 <div class="page-logo">
-
+                    <h1><span class="upper">MINI</span><span class="lower">Watch Shop</span></h1>
                 </div>
 
                 <ul>

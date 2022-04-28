@@ -3,8 +3,8 @@ namespace Controllers;
 
 class OrderController
 {
-    public static function show()
+    public static function list()
     {
-        echo "Hello from Order Controller!";
+        loadView('admin/orders/list');
     }
 }

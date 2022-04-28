@@ -8,7 +8,7 @@ class Banner extends DataObject
         'photo_name' => '',
     ];
 
-    public function add()
+    public function insert()
     {
         $query = 'INSERT INTO ' . TB_BANNERS . ' (photo_name) VALUES (:photo_name)';
         
@@ -17,7 +17,7 @@ class Banner extends DataObject
 
             $statement = $conn->prepare($query);
             $statement->bindValue(':photo_name', $this->data['photo_name']);
-            $statemnt->execute();
+            $statement->execute();
 
             parent::disconnect($conn);
         } catch(PDOException $e) {
@@ -47,7 +47,7 @@ class Banner extends DataObject
         }
     }
 
-    public function deleteByID()
+    public function delete()
     {
         $query = 'Delete FROM ' . TB_BANNERS . ' WHERE id=:id';
 
@@ -55,7 +55,7 @@ class Banner extends DataObject
             $conn = parent::connect();
 
             $statement = $conn->prepare($query);
-            $statement->bindValue(':id', $this->id);
+            $statement->bindValue(':id', $this->data['id']);
             $statement->execute();
 
             parent::disconnect($conn);

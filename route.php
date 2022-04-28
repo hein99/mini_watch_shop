@@ -62,6 +62,7 @@ $fourth_query = isset($_GET['fourth-query']) ? $_GET['fourth-query'] : '';
 
 $routes = [ 
     '/home' => 'Controllers\HomeController::home',
+
     /**
      * -------------------------------------
      * Authentication routes for page admin
@@ -92,11 +93,13 @@ $routes = [
      * ---------------------
      * 
      */
-    '/admin' => 'Controllers\OrderController::show',
+    '/admin' => 'Controllers\OrderController::list',
+    '/admin/orders' => 'Controllers\OrderController::list',
+    // '/admin/orders/detail/' . $fourth_query => 'Controller\OrderController::detail',
 
     /**
      * ---------------------
-     * Watches' area routes
+     * Products' area routes
      * ---------------------
      * 
      */
@@ -108,6 +111,18 @@ $routes = [
     '/admin/products/edit/' . $fourth_query => 'Controllers\ProductController::edit',
     '/admin/products/add_photo' => 'Controllers\ProductController::addPhoto',
     '/admin/products/delete_photos/' . $fourth_query => 'Controllers\ProductController::deleteAllPhotos',
+
+    /**
+     * ---------------------
+     * Banners's area route
+     * ---------------------
+     * 
+     */
+
+     '/admin/banners' => 'Controllers\BannerController::list',
+     '/admin/banners/create' => 'Controllers\BannerController::create',
+     '/admin/banners/delete/' . $fourth_query => 'Controllers\BannerController::delete',
+
 ];
 
 // if $route_string is in $routes, call respective controller's respective function
