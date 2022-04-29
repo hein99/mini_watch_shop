@@ -41,7 +41,7 @@ function setSelected(Models\DataObject $obj, $field_name, $field_value) {
  * 
  */
 
-function displayPageHeader($title)
+function displayPageHeader($title, $nav_link)
 { ?>
     <!DOCTYPE html>
     <html lang="en">
@@ -50,8 +50,41 @@ function displayPageHeader($title)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $title . ' | ' . APP_NAME ?></title>
-        <link rel="stylesheet" href="resources/css/style.css">
+        <link rel="stylesheet" href="<?php echo APP_URL ?>resources/css/reset.css">
+        <link rel="stylesheet" href="<?php echo APP_URL ?>resources/css/style.css">
     </head>
+    <header class="pg-header">
+        <div class="pg-logo">
+            <h1><span class="upper">MINI</span><span class="lower">Watch Shop</span></h1>
+        </div>
+
+        <ul>
+            <?php if($nav_link == 'products') : ?>
+                <li><a href="#" class="active">Products</a></li>
+            <?php else : ?>
+                <li><a href="<?php echo APP_URL ?>products">Products</a></li>
+            <?php endif; ?>
+
+            <?php if($nav_link == 'orders') : ?>
+                <li><a href="#" class="active">Track Order</a></li>
+            <?php else : ?>
+                <li><a href="<?php echo APP_URL ?>/orders/track">Track Order</a></li>
+            <?php endif; ?>
+
+            <?php if($nav_link == 'contact_us') : ?>
+                <li><a href="#" class="active">Contact Us</a></li>
+            <?php else : ?>
+                <li><a href="<?php echo APP_URL ?>/contact_us">Contact Us</a></li>
+            <?php endif; ?>
+
+            <?php if($nav_link == 'about_us') : ?>
+                <li><a href="#" class="active">About Us</a></li>
+            <?php else : ?>
+                <li><a href="<?php echo APP_URL ?>/about_us">About Us</a></li>
+            <?php endif; ?>
+        </ul>
+    </header>
+
     <body>
 <?php
 }
@@ -88,6 +121,7 @@ function displayAdminPageHeader($title, $nav_link)
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title><?php echo $title . ' | ' . APP_NAME ?></title>
+        <link rel="stylesheet" href="<?php echo APP_URL ?>resources/css/reset.css">
         <link rel="stylesheet" href="<?php echo APP_URL ?>resources/css/admin_style.css">
     </head>
     <body>
@@ -98,8 +132,8 @@ function displayAdminPageHeader($title, $nav_link)
          */
         if(isset($_SESSION['admin']) and $_SESSION['admin']) :
         ?>
-            <header>
-                <div class="page-logo">
+            <header class="pg-header">
+                <div class="pg-logo">
                     <h1><span class="upper">MINI</span><span class="lower">Watch Shop</span></h1>
                 </div>
 

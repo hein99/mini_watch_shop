@@ -7,5 +7,6 @@ class HomeController
 {
     public static function home()
     {
+        loadView('home');
     }
 }
