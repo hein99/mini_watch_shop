@@ -404,6 +404,7 @@ class ProductController
 
                     $product->updatePhoto();
                     header('location: ' . APP_URL . 'admin/products/edit/' . $existing_product->getValue('id'));
+                    exit();
                 }
             }
         }

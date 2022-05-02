@@ -53,9 +53,11 @@ class BannerController
     public static function delete()
     {
         if(isset($_GET['fourth-query']) and $_GET['fourth-query']) {
-            $banner = new Banner([
-                'id' => preg_replace('/[^0-9]/', '', $_GET['fourth-query']),
-            ]);
+            $banner = Banner::getBanner($_GET['fourth-query']);
+            $file = $banner->getValue('photo_name');
+            if(file_exists($file) and !is_dir($file))
+                 unlink($file);
+
             $banner->delete();
         }
         

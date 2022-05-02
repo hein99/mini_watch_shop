@@ -133,9 +133,11 @@ function displayAdminPageHeader($title, $nav_link)
         if(isset($_SESSION['admin']) and $_SESSION['admin']) :
         ?>
             <header class="pg-header">
-                <div class="pg-logo">
-                    <h1><span class="upper">MINI</span><span class="lower">Watch Shop</span></h1>
-                </div>
+                <a href="<?php echo APP_URL ?>">
+                    <div class="pg-logo">
+                        <h1><span class="upper">MINI</span><span class="lower">Watch Shop</span></h1>
+                    </div>
+                </a>
 
                 <ul>
                     <?php if($nav_link == 'orders') : ?>
@@ -150,7 +152,7 @@ function displayAdminPageHeader($title, $nav_link)
                         <li><a href="<?php echo APP_URL ?>admin/banners">Banners</a></li>
                     <?php endif; ?>
 
-                    <?php if($nav_link == 'watches') : ?>
+                    <?php if($nav_link == 'products') : ?>
                         <li><a href="#" class="active">Products</a></li>
                     <?php else : ?>
                         <li><a href="<?php echo APP_URL ?>admin/products">Products</a></li>
@@ -162,7 +164,13 @@ function displayAdminPageHeader($title, $nav_link)
                         <li><a href="<?php echo APP_URL ?>admin/admins">Page&nbsp;Admins</a></li>
                     <?php endif; ?>
 
-                    <li><a href="<?php echo APP_URL ?>auth/logout">Logout</a></li>
+                    <li>
+                        <a href="<?php echo APP_URL ?>auth/logout" title="Log Out">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" fill="currentColor" class="bi bi-door-closed-fill" viewBox="0 0 16 16">
+                            <path d="M12 1a1 1 0 0 1 1 1v13h1.5a.5.5 0 0 1 0 1h-13a.5.5 0 0 1 0-1H3V2a1 1 0 0 1 1-1h8zm-2 9a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+                        </svg>
+                        </a>
+                    </li>
                 </ul>
             </header>
         <?php endif; ?>

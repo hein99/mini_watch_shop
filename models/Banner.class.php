@@ -1,6 +1,9 @@
 <?php
 namespace Models;
 
+use PDO;
+use PDOException;
+
 class Banner extends DataObject
 {
     protected $data = [
@@ -21,6 +24,26 @@ class Banner extends DataObject
 
             parent::disconnect($conn);
         } catch(PDOException $e) {
+            die('Query failed: ' . $e->getMessage());
+        }
+    }
+
+    public static function getBanner($id)
+    {
+        $query = 'SELECT * FROM ' . TB_BANNERS . ' WHERE id = :id';
+
+        try{
+            $conn = parent::connect();
+
+            $statement = $conn->prepare($query);
+            $statement->bindValue(':id', $id, PDO::PARAM_INT);
+            $statement->execute();
+
+            $row = $statement->fetch();
+
+            parent::connect($conn);
+            if($row) return new Banner($row);
+        } catch (PDOException $e) {
             die('Query failed: ' . $e->getMessage());
         }
     }
