@@ -216,6 +216,7 @@ body {
 .banners-container {
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-around;
     margin-top: var(--space-4);
 }
 
@@ -224,7 +225,8 @@ body {
     flex: 300px;
     max-width: 300px;
     max-height: 150px;
-    margin-right: 5px;
+    margin-top: var(--space-3);
+    margin-right: var(--space-3);
     cursor: pointer;
     transform: scale(1);
     transition: 0.5s;
@@ -359,6 +361,7 @@ body {
     padding: var(--space-5);
     border: 3px dashed var(--secondary);
     margin-top: var(--space-3);
+    margin-bottom: var(--space-4);
 }
 
 .products-container {

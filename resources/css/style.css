@@ -1,0 +1,494 @@
+:root {
+    --primary: #0d6efd;
+    --secondary: #6c757d;
+    --danger: #fc0c0c;
+    --success: #33ff28;
+    --light: #c0c0c0;
+
+    --space-1: 0.25rem;
+    --space-2: 0.5rem;
+    --space-3: 1rem;
+    --space-4: 1.5rem;
+    --space-5: 3rem;
+
+    --font-family-serif: Georgia1, 'Times New Roman', Times, serif;
+    --font-family-san-serif: Verdana1, Geneva, Tahoma, sans-serif;
+}
+
+@font-face {
+    font-family: Georgia1;
+    src: url('/mini_watch_shop/resources/fonts/georgia.ttf');
+}
+
+@font-face {
+    font-family: Verdana1;
+    src: url('/mini_watch_shop/resources/fonts/verdana.ttf');
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family-san-serif);
+    font-size: 16px;
+    background: #f1f1f1;
+}
+
+/* Logo Design */
+.pg-logo span {
+    font-family: var(--font-family-san-serif);
+    display: block;
+    text-align: center;
+}
+
+.pg-logo span:first-child {
+    font-size: 2rem;
+    letter-spacing: 2px;
+    color: #024492;
+}
+
+/* Page Header layout and desigin */
+.pg-header {
+    padding: 1rem 2rem;
+    background: #fff;
+}
+
+.pg-header>a {
+    text-decoration: none;
+    color: #000;
+}
+
+.pg-header>ul {
+    display: none;
+    z-index: 1;
+    overflow: auto;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: #fff;
+    height: 100vh;
+    padding-top: 10vh;
+    animation: nav 0.8s;
+    box-shadow: 0 0 3px var(--light);
+}
+
+.pg-header>ul>li {
+    border-bottom: 1px solid var(--light);
+}
+
+.pg-header>ul>li>a {
+    display: block;
+    padding: 0.8125rem 2rem 0.8125rem 0.8125rem;
+    text-decoration: none;
+    color: #000;
+
+}
+
+.pg-header>ul>li>a.active {
+    color: var(--primary);
+}
+
+.pg-header>ul>li>a>svg {
+    vertical-align: middle;
+}
+
+.pg-header>.nav-open-btn {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    background: none;
+    border: 0;
+}
+
+.pg-header>.nav-close-btn {
+    display: none;
+    z-index: 2;
+    position: fixed;
+    top: 2vh;
+    right: 2vh;
+    color: #000;
+    border: 0;
+    background: none;
+}
+
+@keyframes nav {
+    from {
+        height: 0;
+    }
+
+    to {
+        height: 100vh;
+    }
+}
+
+
+.container, .container-sm, .container-md, .container-lg, .container-xl, .container-xxl {
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col-1 { 
+    flex: 8.33%;
+    max-width: 8.33%; 
+}
+.col-2 { 
+    flex: 16.66%;
+    max-width: 16.66%;
+}
+.col-3 { 
+    flex: 24.99%;
+    max-width: 24.99%;
+}
+.col-4 { 
+    flex: 33.32%;
+    max-width: 33.32%;
+}
+.col-5 { 
+    flex: 41.65%;
+    max-width: 41.65%;
+}
+.col-6 { 
+    flex: 49.98%;
+    max-width: 49.98%;
+}
+.col-7 { 
+    flex: 58.31%;
+    max-width: 58.31%;
+}
+.col-8 { 
+    flex: 66.64%;
+    max-width: 66.64%;
+}
+.col-9 { 
+    flex: 74.97%;
+    max-width: 74.97%;
+}
+.col-10 { 
+    flex: 83.3%;
+    max-width: 83.3%; 
+}
+.col-11 { 
+    flex: 91.63%;
+    max-width: 91.63%;
+}
+.col-12 { 
+    flex: 99.96%;
+    max-width: 99.96%;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media screen and (min-width: 576px) {
+    .col-sm-1 { 
+        flex: 8.33%;
+        max-width: 8.33%; 
+    }
+    .col-sm-2 { 
+        flex: 16.66%;
+        max-width: 16.66%;
+    }
+    .col-sm-3 { 
+        flex: 24.99%;
+        max-width: 24.99%;
+    }
+    .col-sm-4 { 
+        flex: 33.32%;
+        max-width: 33.32%;
+    }
+    .col-sm-5 { 
+        flex: 41.65%;
+        max-width: 41.65%;
+    }
+    .col-sm-6 { 
+        flex: 49.98%;
+        max-width: 49.98%;
+    }
+    .col-sm-7 { 
+        flex: 58.31%;
+        max-width: 58.31%;
+    }
+    .col-sm-8 { 
+        flex: 66.64%;
+        max-width: 66.64%;
+    }
+    .col-sm-9 { 
+        flex: 74.97%;
+        max-width: 74.97%;
+    }
+    .col-sm-10 { 
+        flex: 83.3%;
+        max-width: 83.3%; 
+    }
+    .col-sm-11 { 
+        flex: 91.63%;
+        max-width: 91.63%;
+    }
+    .col-sm-12 { 
+        flex: 99.96%;
+        max-width: 99.96%;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media screen and (min-width: 768px) {
+    .pg-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .pg-header>.nav-open-btn {
+        display: none!important;
+    }
+
+    .pg-header>.nav-close-btn {
+        display: none!important;
+    }
+
+    .pg-header>ul {
+        display: block;
+        position: static;
+        background: none;
+        height: auto;
+        padding: unset;
+        box-shadow: unset;
+        animation: none;
+    }
+
+    .pg-header>ul>li {
+        display: inline-block;
+        border: 0;
+    }
+
+    .pg-header>ul>li>a {
+        padding: 0 1rem;
+    }
+
+
+    .container, .container-sm, .container-md {
+        width: 720px;
+    }
+
+    .col-md-1 { 
+        flex: 8.33%;
+        max-width: 8.33%; 
+    }
+    .col-md-2 { 
+        flex: 16.66%;
+        max-width: 16.66%;
+    }
+    .col-md-3 { 
+        flex: 24.99%;
+        max-width: 24.99%;
+    }
+    .col-md-4 { 
+        flex: 33.32%;
+        max-width: 33.32%;
+    }
+    .col-md-5 { 
+        flex: 41.65%;
+        max-width: 41.65%;
+    }
+    .col-md-6 { 
+        flex: 49.98%;
+        max-width: 49.98%;
+    }
+    .col-md-7 { 
+        flex: 58.31%;
+        max-width: 58.31%;
+    }
+    .col-md-8 { 
+        flex: 66.64%;
+        max-width: 66.64%;
+    }
+    .col-md-9 { 
+        flex: 74.97%;
+        max-width: 74.97%;
+    }
+    .col-md-10 { 
+        flex: 83.3%;
+        max-width: 83.3%; 
+    }
+    .col-md-11 { 
+        flex: 91.63%;
+        max-width: 91.63%;
+    }
+    .col-md-12 { 
+        flex: 99.96%;
+        max-width: 99.96%;
+    }
+}
+
+/* Large devices (large desktops, 992px and up) */
+@media screen and (min-width: 992px) {
+    .container, .container-sm, .container-md, .container-lg {
+        width: 960px;
+    }
+
+    .col-lg-1 { 
+        flex: 8.33%;
+        max-width: 8.33%; 
+    }
+    .col-lg-2 { 
+        flex: 16.66%;
+        max-width: 16.66%;
+    }
+    .col-lg-3 { 
+        flex: 24.99%;
+        max-width: 24.99%;
+    }
+    .col-lg-4 { 
+        flex: 33.32%;
+        max-width: 33.32%;
+    }
+    .col-lg-5 { 
+        flex: 41.65%;
+        max-width: 41.65%;
+    }
+    .col-lg-6 { 
+        flex: 49.98%;
+        max-width: 49.98%;
+    }
+    .col-lg-7 { 
+        flex: 58.31%;
+        max-width: 58.31%;
+    }
+    .col-lg-8 { 
+        flex: 66.64%;
+        max-width: 66.64%;
+    }
+    .col-lg-9 { 
+        flex: 74.97%;
+        max-width: 74.97%;
+    }
+    .col-lg-10 { 
+        flex: 83.3%;
+        max-width: 83.3%; 
+    }
+    .col-lg-11 { 
+        flex: 91.63%;
+        max-width: 91.63%;
+    }
+    .col-lg-12 { 
+        flex: 99.96%;
+        max-width: 99.96%;
+    }
+
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media screen and (min-width: 1200px) {
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        width: 1140px;
+    }
+
+    .col-xl-1 { 
+        flex: 8.33%;
+        max-width: 8.33%; 
+    }
+    .col-xl-2 { 
+        flex: 16.66%;
+        max-width: 16.66%;
+    }
+    .col-xl-3 { 
+        flex: 24.99%;
+        max-width: 24.99%;
+    }
+    .col-xl-4 { 
+        flex: 33.32%;
+        max-width: 33.32%;
+    }
+    .col-xl-5 { 
+        flex: 41.65%;
+        max-width: 41.65%;
+    }
+    .col-xl-6 { 
+        flex: 49.98%;
+        max-width: 49.98%;
+    }
+    .col-xl-7 { 
+        flex: 58.31%;
+        max-width: 58.31%;
+    }
+    .col-xl-8 { 
+        flex: 66.64%;
+        max-width: 66.64%;
+    }
+    .col-xl-9 { 
+        flex: 74.97%;
+        max-width: 74.97%;
+    }
+    .col-xl-10 { 
+        flex: 83.3%;
+        max-width: 83.3%; 
+    }
+    .col-xl-11 { 
+        flex: 91.63%;
+        max-width: 91.63%;
+    }
+    .col-xl-12 { 
+        flex: 99.96%;
+        max-width: 99.96%;
+    }
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media screen and (min-width: 1400px) {
+    .container, .container-sm, .container-md, .container-lg, .container-xl {
+        width: 1320px;
+    }
+
+    .col-xxl-1 { 
+        flex: 8.33%;
+        max-width: 8.33%; 
+    }
+    .col-xxl-2 { 
+        flex: 16.66%;
+        max-width: 16.66%;
+    }
+    .col-xxl-3 { 
+        flex: 24.99%;
+        max-width: 24.99%;
+    }
+    .col-xxl-4 { 
+        flex: 33.32%;
+        max-width: 33.32%;
+    }
+    .col-xxl-5 { 
+        flex: 41.65%;
+        max-width: 41.65%;
+    }
+    .col-xxl-6 { 
+        flex: 49.98%;
+        max-width: 49.98%;
+    }
+    .col-xxl-7 { 
+        flex: 58.31%;
+        max-width: 58.31%;
+    }
+    .col-xxl-8 { 
+        flex: 66.64%;
+        max-width: 66.64%;
+    }
+    .col-xxl-9 { 
+        flex: 74.97%;
+        max-width: 74.97%;
+    }
+    .col-xxl-10 { 
+        flex: 83.3%;
+        max-width: 83.3%; 
+    }
+    .col-xxl-11 { 
+        flex: 91.63%;
+        max-width: 91.63%;
+    }
+    .col-xxl-12 { 
+        flex: 99.96%;
+        max-width: 99.96%;
+    }
+}
