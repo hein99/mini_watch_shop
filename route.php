@@ -57,11 +57,16 @@ if(isset($_GET['second-query']) and $_GET['second-query']) {
     }
 }
 
-// for id in url('/admin/admins/edit/3)
+// for id in Admin Area's url('/products/detail/3) 
+$third_query = isset($_GET['third-query']) ? $_GET['third-query'] : '';
+
+// for id in Admin Area's url('/admin/admins/edit/3) 
 $fourth_query = isset($_GET['fourth-query']) ? $_GET['fourth-query'] : '';
 
 $routes = [ 
     '/home' => 'Controllers\HomeController::home',
+    '/products' => 'Controllers\ProductController::showAll',
+    '/products/detail/' . $third_query => 'Controllers\ProductController::detailProduct',
 
     /**
      * -------------------------------------

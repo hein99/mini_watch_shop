@@ -139,6 +139,8 @@ function displayPageHeader($title, $nav_link)
 
 function displayPageFooter()
 { ?>
+
+    <footer>All rights reserved. &copy;<?php echo date('Y') ?></footer>
         <script>
             var nav_open_btn = document.querySelector('.nav-open-btn');
             var nav_close_btn = document.querySelector('.nav-close-btn');

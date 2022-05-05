@@ -53,7 +53,7 @@
                                     <span><?php echo number_format($product->getValueEncoded('price')) ?></span>
                                     <span><?php echo $product->getFinalPrice() ?> MMK</span>
                                 </p>
-                                <div class="discount"><?php echo $product->getValueEncoded('discount_percentage') ?> %</div>
+                                <div class="discount">-<?php echo $product->getValueEncoded('discount_percentage') ?>%</div>
                             <?php else : ?>
                                 <p class="price">
                                     <span></span>

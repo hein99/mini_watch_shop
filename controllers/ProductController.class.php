@@ -7,9 +7,9 @@ use Models\Product;
 class ProductController
 {
     /**
-     * ----------------------------------------
-     * Display watches group by their category
-     * ----------------------------------------
+     * ------------------------------------------------------
+     * Display watches group by their category in Admin Page
+     * ------------------------------------------------------
      * 
      */
     public static function list()
@@ -17,6 +17,30 @@ class ProductController
         $product_categories = Category::getAll();
         loadView('admin/products/list', [
             'categories' => $product_categories,
+        ]);
+    }
+
+    /**
+     * --------------------------------------------------------
+     * Display watches group by their category in Customer Page
+     * --------------------------------------------------------
+     * 
+     */
+    public static function showAll()
+    {
+        $product_categories = Category::getAll();
+        loadView('products/list', [
+            'categories' => $product_categories,
+        ]);
+    }
+
+    public static function detailProduct()
+    {
+        $product = Product::getProduct($_GET['third-query']);
+        $category = Category::getCategory($product->getValue('category_id'));
+        loadView('products/detail', [
+            'category' => $category,
+            'product' => $product,
         ]);
     }
 

@@ -377,6 +377,7 @@ body {
     background: #fff;
     max-width: 22%;
     padding: var(--space-3);
+    margin-top: var(--space-4);
     margin-right: var(--space-4);
     transform: scale(1);
 }
