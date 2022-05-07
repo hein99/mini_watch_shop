@@ -648,7 +648,6 @@ footer {
     width: 100vw;
     height: 100vh;
     background: #00000099;
-    display: none;
     justify-content: center;
     align-items: center;
 }

@@ -67,6 +67,7 @@ $routes = [
     '/home' => 'Controllers\HomeController::home',
     '/products' => 'Controllers\ProductController::showAll',
     '/products/detail/' . $third_query => 'Controllers\ProductController::detailProduct',
+    '/orders/add' => 'Controllers\OrderController::add',
 
     /**
      * -------------------------------------

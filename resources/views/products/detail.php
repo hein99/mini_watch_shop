@@ -43,7 +43,15 @@
                             <span><?php echo $data['product']->getFinalPrice() ?> MMK</span>
                         </p>
                     <?php endif; ?>
-                    <button id="buy-now">Buy Now</button>
+                    <button id="buy-now" data-category="<?php echo $data['category']->getValue('name') ?>" 
+                        data-product="<?php echo preg_replace('/[\"]/', '\'', json_encode([
+                            'id' => $data['product']->getValue('id'), 
+                            'name' => $data['product']->getValue('name'), 
+                            'photo_name' => APP_URL . $data['product']->getValue('photo_name') . '0.jpg',
+                            'discount_percentage' => $data['product']->getValue('discount_percentage'),
+                            'price' => $data['product']->getValue('price'),
+                            'final_price' => $data['product']->getFinalPrice(),
+                            ])) ?>">Buy Now</button>
                 </div>
             </div>
         </div>
@@ -63,7 +71,9 @@
                 <path fill-rule="evenodd" d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z"/>
             </svg>
         </button>
+
         <h1 class="h4">Order</h1>
+        
         <div class="buy-product">
             <img src="<?php echo APP_URL . $data['product']->getValue('photo_name') . '0.jpg' ?>" alt="">
             <h2><span><?php echo $data['category']->getValue('name') ?></span><br><span><?php echo $data['product']->getValue('name') ?></span></h2>
@@ -83,8 +93,9 @@
                 </p>
             <?php endif; ?>
         </div>
+
         <form action="<?php echo APP_URL ?>orders/add" method="post">
-            <input type="hidden" name="watch-id" value="<?php echo $data['product']->getValue('id') ?>">
+            <input type="hidden" name="watch_id" value="<?php echo $data['product']->getValue('id') ?>">
 
             <label for="customer-name">Name</label>
             <input type="text" name="customer_name" id="customer-name" required>

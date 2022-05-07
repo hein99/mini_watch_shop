@@ -12,6 +12,7 @@ include('models/DataObject.class.php');
 include('models/Admin.class.php');
 include('models/Banner.class.php');
 include('models/Category.class.php');
+include('models/Order.class.php');
 include('models/Product.class.php');
 
 
