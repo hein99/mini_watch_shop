@@ -15,4 +15,15 @@ class HomeController
             'categories' => $categories,
         ]);
     }
+
+    public static function contact_us()
+    {
+        loadView('contact-us');
+    }
+
+    public static function about_us()
+    {
+        loadView('about-us');
+    }
+
 }

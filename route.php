@@ -68,6 +68,9 @@ $routes = [
     '/products' => 'Controllers\ProductController::showAll',
     '/products/detail/' . $third_query => 'Controllers\ProductController::detailProduct',
     '/orders/add' => 'Controllers\OrderController::add',
+    '/orders/track' => 'Controllers\OrderController::track',
+    '/contact_us' => 'Controllers\HomeController::contact_us',
+    '/about_us' => 'Controllers\HomeController::about_us',
 
     /**
      * -------------------------------------
@@ -101,7 +104,7 @@ $routes = [
      */
     '/admin' => 'Controllers\OrderController::list',
     '/admin/orders' => 'Controllers\OrderController::list',
-    // '/admin/orders/detail/' . $fourth_query => 'Controller\OrderController::detail',
+    '/admin/orders/edit/' . $fourth_query => 'Controllers\OrderController::edit',
 
     /**
      * ---------------------

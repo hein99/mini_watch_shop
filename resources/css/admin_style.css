@@ -826,3 +826,390 @@ table.admins-tb td>a>svg {
     opacity: 0.8;
 }
 
+/* Create Orders page layout and design */
+.order-filter {
+    margin-top: var(--space-4);
+}
+
+.order-filter>div {
+    display: inline-block;
+    background: #fff;
+    border: 1px solid var(--light);
+    border-radius: 5px;
+}
+
+.order-filter>div>label {
+    display: inline-block;
+    padding: 0.5rem;
+    border-radius: 5px 0 0 5px;
+    border-right: 1px solid var(--light);
+}
+
+.order-filter>div>label>svg {
+    vertical-align: middle;
+    fill: var(--primary);
+}
+
+.order-filter>div>select {
+    display: inline-block;
+    background: none;
+    padding: 0.5rem;
+    border: 0;
+}
+
+.order-filter>div>input[type="submit"] {
+    display: inline-block;
+    background: none;
+    padding: 0.5rem;
+    border: 0;
+    border-left: 1px solid var(--light);
+    border-radius: 0 5px 5px 0;
+}
+
+.order-table-container {
+    margin-top: var(--space-2);
+    width: 100%;
+}
+
+.order-table-container>table {
+    width: 100%;
+    background: #fff;
+    border-collapse: collapse;
+}
+
+.order-table-container>table thead th {
+    color: #fff;
+    background: var(--primary);
+    padding: 1rem 0;
+}
+
+.order-table-container>table tbody td {
+    font-size: 0.875rem;
+    padding: 0.8rem;
+    border-bottom: 1px solid var(--light);
+}
+
+.order-table-container>table tbody td:first-child a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+.order-table-container>table tbody td:first-child a:hover {
+    color: #333;
+}
+
+.order-table-container>table tbody tr:hover {
+    background: #eaeaea;
+    color: var(--primary);
+}
+
+.table-nav {
+    text-align: right;
+    margin: var(--space-2) 0 var(--space-3);
+}
+
+.table-nav>a {
+    display: inline-block;
+    text-decoration: none;
+    color: var(--primary);
+    background: #fff;
+    padding: 0.5rem;
+    box-shadow: -2px 3px 3px var(--secondary);
+}
+
+.table-nav>a:hover {
+    background: #f1f1f1;
+}
+
+.order-table-container>table .status {
+    text-align: center;
+    padding: 0.5rem;
+    margin: -0.8rem;
+}
+
+.order-table-container>table .ordered {
+    color: #fff;
+    background: #d7c713;
+}
+
+.order-table-container>table .processing {
+    font-size: 0.8125rem;
+    color: #fff;
+    background: #1296aa;
+}
+
+.order-table-container>table .shipped {
+    color: #fff;
+    background: #707070;
+}
+
+.order-table-container>table .completed {
+    color: #fff;
+    background: var(--success);
+}
+
+.order-table-container>table .cancelled {
+    color: #fff;
+    background: var(--danger);
+}
+
+/* Create Order edit page layout and design */
+.info {
+    position: absolute;
+    top: 5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    box-shadow: 0 2px 2px var(--secondary);
+    padding: 1rem 1.5rem;
+    animation: infoDropDown 0.8s ease-in;
+}
+
+.info>button {
+    position: relative;
+    left: 0.8rem;
+    border: 1px solid var(--danger);
+    background: none;
+    color: var(--danger);
+    font-size: 0.75rem;
+    text-align: center;
+    width: 1.2rem;
+    height: 1.2rem;
+    line-height: 1.2rem;
+    padding: 0;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+@keyframes infoDropDown {
+    from {
+        top: 1rem;
+    } to {
+        top: 5rem;
+    }
+}
+
+.order-status-wrap .order-status-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 65vw;
+    margin: var(--space-4) auto var(--space-4);
+}
+
+.order-status-container>div.line {
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    border: 2px dashed #bebebe;
+}
+
+.order-status-container>div.completed {
+    border: 3px solid var(--primary);
+}
+
+.order-status-wrap .cancelled {
+    display: block;
+    padding: 1.5rem 0;
+    border: 3px dashed var(--danger);
+}
+
+.order-status-wrap .cancelled>div{
+    font-family: var(--font-family-serif);
+    font-size: 1.125rem;
+    color: var(--danger);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.order-status-wrap .ordered>div.completed {
+    width: 0;
+}
+
+.order-status-wrap .processing>div.completed {
+    width: 33%;
+}
+
+.order-status-wrap .shipped>div.completed {
+    width: 66%;
+}
+
+.order-status-container div[class*="status-"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px dashed var(--light);
+    border-radius: 50%;
+    background: #f1f1f1;
+    outline: 5px solid #f1f1f1;
+}
+
+.order-status-wrap .ordered>.status-1, .order-status-wrap .processing>.status-1,
+.order-status-wrap .shipped>.status-1, .order-status-wrap .completed>.status-1 {
+    color: #fff;
+    background: #d7c713;
+    border: 2px solid #d7c713;
+}
+
+.order-status-wrap .processing>.status-2, .order-status-wrap .shipped>.status-2,
+.order-status-wrap .completed>.status-2 {
+    color: #fff;
+    background: #1296aa;
+    border: 2px solid #1296aa;
+}
+
+.order-status-wrap .shipped>.status-3, .order-status-wrap .completed>.status-3{
+    color: #fff;
+    background: #707070;
+    border: 2px solid #707070;
+}
+
+.order-status-wrap .completed>.status-4{
+    color: #fff;
+    background: var(--success);
+    border: 2px solid var(--success);
+}
+
+
+.order-form-wrap {
+    margin-top: var(--space-4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-form-container {
+    background: #fff;
+    padding: var(--space-4);
+}
+
+.order-form-container .buy-product {
+    position: relative;
+    border: 2px dashed var(--secondary);
+    padding: var(--space-2);
+    margin: var(--space-4) 0;
+    text-align: center;
+}
+
+.order-form-container .buy-product>img {
+    height: 6rem;
+}
+
+.order-form-container .buy-product>h2>span:first-child {
+    font-family: var(--font-family-serif);
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.order-form-container .buy-product>h2>span:last-child {
+    font-size: 1rem;
+}
+
+.order-form-container .price {
+    margin-top: var(--space-4);
+}
+
+.order-form-container .price>span:first-child {
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-decoration: line-through;
+    color: var(--danger);
+}
+
+.order-form-container .price>span:last-child {
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.buy-product .discount {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    padding: 8px 10px;
+    color: #fff;
+    background: var(--danger);
+    border-radius: 5px;
+}
+
+.order-form-container .order-info {
+    font-size: 0.875rem;
+}
+
+.order-form-container .order-info p {
+    margin-top: var(--space-3);
+}
+
+.order-form-container .order-info p b {
+    display: block;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-1);
+}
+
+.order-form-container>form label {
+    display: block;
+    font-family: var(--font-family-serif);
+    font-size: 1.125rem;
+    margin-top: var(--space-3);
+    margin-bottom: var(--space-2);
+}
+
+.order-form-container>form input[type="text"] {
+    display: block;
+    width: 100%;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid var(--light);
+}
+
+.order-form-container>form .highlighted-bar {
+    opacity: 0;
+    width: 1%;
+    margin-bottom: var(--space-3);
+    border-top: 1px solid var(--primary);
+    box-shadow: 0 0 3px var(--primary);
+    transition: 0.6s;
+}
+
+.order-form-container>form input:focus{
+    font-size: 1.0625rem;
+    border-bottom: 0;
+}
+
+.order-form-container>form input:focus+.highlighted-bar {
+    opacity: 1;
+    width: 100%;
+}
+
+.order-form-container>form textarea {
+    width: 100%;
+    min-height: 5rem;
+    border: 1px solid var(--light);
+    resize: none;
+}
+
+.order-form-container>form select {
+    display: block;
+    background: #fff;
+    width: 100%;
+    padding: 0.5rem 0;
+    border: 1px solid var(--light);
+    margin-bottom: var(--space-5);
+}
+
+.order-form-container>form input[type="submit"] {
+    display: block;
+    font-size: 1rem;
+    color: #fff;
+    background: var(--primary);
+    width: 100%;
+    padding: 0.625rem 0;
+    border: 0;
+}

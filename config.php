@@ -15,3 +15,5 @@ define('TB_BANNERS', 'banners');
 define('TB_CATEGORIES', 'categories');
 define('TB_ORDERS', 'orders');
 define('TB_PRODUCTS', 'products');
+
+define('NUMBER_OF_ROWS', 10);

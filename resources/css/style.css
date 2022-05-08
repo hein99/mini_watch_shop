@@ -639,7 +639,7 @@ footer {
     text-align: center;
 }
 
-.order-form-wrap {
+.order-form-wrap, .order-form-success-wrap {
     position: fixed;
     overflow: auto;
     z-index: 10;
@@ -648,23 +648,48 @@ footer {
     width: 100vw;
     height: 100vh;
     background: #00000099;
+    display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.order-form-container {
+.order-form-container, .order-form-success-container {
     position: relative;
     background: #fff;
     padding: var(--space-4);
 }
 
-.order-form-container #close-btn {
+.order-form-container #close-btn, .order-form-success-container #close-btn {
     position: absolute;
     top: 1rem;
     right: 1rem;
     color: var(--danger);
     background: none;
     border: 0;
+}
+
+.order-form-success-container .success-body {
+    text-align: center;
+    max-width: 25rem;
+    border: 2px dashed var(--secondary);
+    padding: var(--space-2);
+    margin: var(--space-4) 0;
+}
+
+.order-form-success-container .success-body>h2 {
+    font-size: 1.125rem;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-2);
+}
+
+.order-form-success-container .success-body>p:nth-child(2){
+    font-size: 0.9375rem;
+    color: var(--danger);
+    margin-bottom: var(--space-2);
+}
+
+.order-form-success-container .success-body>p:last-child a {
+    color: var(--primary);
 }
 
 .order-form-container .buy-product {
@@ -719,6 +744,11 @@ footer {
     border-radius: 5px;
 }
 
+.order-form-container .error {
+    color: var(--danger);
+    max-width: 20rem;
+}
+
 .order-form-container>form label {
     display: block;
     font-family: var(--font-family-serif);
@@ -762,7 +792,7 @@ footer {
     resize: none;
 }
 
-.order-form-container>form input[type="submit"] {
+.order-form-container>form button {
     display: block;
     font-size: 1rem;
     color: #fff;
@@ -771,6 +801,358 @@ footer {
     padding: 0.625rem 0;
     border: 0;
 }
+
+/*design and layout of track order form page*/
+.order-track-form-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-track-form-container {
+    margin: var(--space-5) 0;
+    background: #fff;
+    padding: var(--space-4);
+    box-shadow: 0 2px 5px var(--light);
+}
+
+.order-track-form-container>h1 {
+    letter-spacing: 1px;
+    margin-bottom: var(--space-4);
+}
+
+.order-track-form-container>.error-container {
+    width: 20vw;
+    list-style-type: circle;
+    color: var(--danger);
+    padding: var(--space-4);
+    margin-bottom: var(--space_3);
+}
+
+.order-track-form-container>form label {
+    display: block;
+    margin: var(--space-3) 0 var(--space-2);
+}
+
+.order-track-form-container>form input[type="text"] {
+    display: block;
+    width: 100%;
+    border: 0;
+    border-bottom: 1px solid var(--light);
+}
+
+.order-track-form-container>form .highlighted-bar  {
+    opacity: 0;
+    width: 1%;
+    margin-bottom: var(--space-3);
+    border-top: 1px solid var(--primary);
+    box-shadow: 0 0 3px var(--primary);
+    transition: 0.6s;
+}
+
+.order-track-form-container>form input[type="text"]:focus {
+    font-size: 1.0625rem;
+    border-bottom: 0;
+}
+
+.order-track-form-container>form input[type="text"]:focus+.highlighted-bar {
+    opacity: 1;
+    width: 100%;
+}
+
+.order-track-form-container>form input[type="submit"] {
+    display: inline-block;
+    color: #fff;
+    background: var(--primary);
+    padding: 0.5rem 1rem;
+    border: 1px solid var(--primary);
+    cursor: pointer;
+}
+
+.order-track-form-container>form input[type="submit"]:hover {
+    background: none;
+    color: var(--primary);
+}
+
+.foget-track-code-field>button {
+    color: var(--primary);
+    text-decoration: underline;
+    background: none;
+    padding: 0;
+    border: 0;
+    margin: var(--space-4) 0 var(--space-2);
+}
+
+.foget-track-code-field>button>svg {
+    vertical-align: middle;
+}
+
+.foget-track-code-field>div {
+    display: none;
+}
+
+.foget-track-code-field>div>p+p {
+    margin-top: var(--space-3);
+}
+
+.foget-track-code-field>div>p a {
+    font-size: 0.875rem;
+    color: var(--primary);
+}
+
+
+/* design and layout of order detail page */
+.order-status-wrap .order-status-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 65vw;
+    margin: var(--space-4) auto var(--space-4);
+}
+
+.order-status-container>div.line {
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 100%;
+    border: 2px dashed #bebebe;
+}
+
+.order-status-container>div.completed {
+    border: 3px solid var(--primary);
+}
+
+.order-status-wrap .cancelled {
+    display: block;
+    padding: 1.5rem 0;
+    border: 3px dashed var(--danger);
+}
+
+.order-status-wrap .cancelled>div{
+    font-family: var(--font-family-serif);
+    font-size: 1.125rem;
+    color: var(--danger);
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+.order-status-wrap .ordered>div.completed {
+    width: 0;
+}
+
+.order-status-wrap .processing>div.completed {
+    width: 33%;
+}
+
+.order-status-wrap .shipped>div.completed {
+    width: 66%;
+}
+
+.order-status-container div[class*="status-"] {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 2px dashed var(--light);
+    border-radius: 50%;
+    background: #f1f1f1;
+    outline: 5px solid #f1f1f1;
+}
+
+.order-status-wrap .ordered>.status-1, .order-status-wrap .processing>.status-1,
+.order-status-wrap .shipped>.status-1, .order-status-wrap .completed>.status-1 {
+    color: #fff;
+    background: #d7c713;
+    border: 2px solid #d7c713;
+}
+
+.order-status-wrap .processing>.status-2, .order-status-wrap .shipped>.status-2,
+.order-status-wrap .completed>.status-2 {
+    color: #fff;
+    background: #1296aa;
+    border: 2px solid #1296aa;
+}
+
+.order-status-wrap .shipped>.status-3, .order-status-wrap .completed>.status-3{
+    color: #fff;
+    background: #707070;
+    border: 2px solid #707070;
+}
+
+.order-status-wrap .completed>.status-4{
+    color: #fff;
+    background: var(--success);
+    border: 2px solid var(--success);
+}
+
+.order-detail-wrap {
+    margin: var(--space-5) 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-detail-container {
+    background: #fff;
+    padding: var(--space-4);
+    max-width: 30rem;
+}
+
+.order-detail-container .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.order-detail-container .header .status {
+    text-align: center;
+    padding: 0.5rem 1rem;
+}
+
+.order-detail-container .ordered {
+    color: #fff;
+    background: #d7c713;
+}
+
+.order-detail-container .processing {
+    font-size: 0.8125rem;
+    color: #fff;
+    background: #1296aa;
+}
+
+.order-detail-container .shipped {
+    color: #fff;
+    background: #707070;
+}
+
+.order-detail-container .completed {
+    color: #fff;
+    background: var(--success);
+}
+
+.order-detail-container .cancelled {
+    color: #fff;
+    background: var(--danger);
+}
+
+.order-detail-container .buy-product {
+    position: relative;
+    border: 2px dashed var(--secondary);
+    padding: var(--space-2);
+    margin: var(--space-4) 0;
+    text-align: center;
+}
+
+.order-detail-container .buy-product>img {
+    height: 6rem;
+}
+
+.order-detail-container .buy-product>h2>span:first-child {
+    font-family: var(--font-family-serif);
+    font-size: 0.875rem;
+    letter-spacing: 1px;
+    color: #333;
+}
+
+.order-detail-container .buy-product>h2>span:last-child {
+    font-size: 1rem;
+}
+
+.order-detail-container .price {
+    margin-top: var(--space-4);
+}
+
+.order-detail-container .price>span:first-child {
+    font-size: 0.8125rem;
+    font-weight: bold;
+    text-decoration: line-through;
+    color: var(--danger);
+}
+
+.order-detail-container .price>span:last-child {
+    font-size: 0.875rem;
+    font-weight: bold;
+}
+
+.order-detail-container .buy-product .discount {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    display: inline-block;
+    font-size: 0.8125rem;
+    font-weight: bold;
+    padding: 8px 10px;
+    color: #fff;
+    background: var(--danger);
+    border-radius: 5px;
+}
+
+.order-detail-container .order-detail>p {
+    margin-top: var(--space-2);
+    font-size: 0.9375rem;
+}
+
+.order-detail-container .order-detail>p:nth-child(4) b {
+    display: block;
+    margin-bottom: var(--space-1);
+}
+
+.order-detail-container .order-detail>p b {
+    font-family: var(--font-family-serif);
+    font-size: 1.125rem;
+    letter-spacing: 1px;
+}
+
+.about-us-bg {
+    background: #000 url("/mini_watch_shop/resources/images/decoration/about-us-bg.jpg") no-repeat;
+    background-size: cover;
+    width: 100vw;
+    height: calc(100vh - 114px);
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+}
+
+.about-us-text {
+    position: absolute;
+    top: 80px;
+    left: 0;
+    color: #fff;
+    width: 100vw;
+    height: calc(100vh - 114px);
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us-text>div {
+    max-width: 80%;
+    background: #000000bb;
+    padding: var(--space-3);
+}
+
+.about-us-text>div h1 {
+    text-align: center;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-4);
+}
+
+.about-us-text>div p {
+    line-height: 1.5rem;
+    margin-bottom: var(--space-3);
+}
+
+.contact-us-phone {
+    text-align: center;
+}
+
+.contact-us-phone a {
+    color: var(--primary);
+    text-decoration: none;
+}
+
 
 
 
@@ -1060,6 +1442,19 @@ footer {
         width: 51rem;
         margin: 0 auto;
     }
+
+    .about-us-text {
+        top: 50%;
+        left: 50%;
+        transform: translateY(-50%);
+        height: auto;
+        padding: var(--space-5);
+        display: block;
+    }
+
+    .about-us-text>div {
+        max-width: initial;
+    }
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
@@ -1133,6 +1528,14 @@ footer {
 
     .product-description p {
         width: 55rem;
+    }
+
+    .product-info .price>span:first-child {
+        font-size: 0.875rem
+    }
+
+    .product-info .price>span:last-child {
+        font-size: 1rem;
     }
 }
 

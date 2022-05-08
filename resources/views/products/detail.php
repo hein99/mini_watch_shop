@@ -43,7 +43,7 @@
                             <span><?php echo $data['product']->getFinalPrice() ?> MMK</span>
                         </p>
                     <?php endif; ?>
-                    <button id="buy-now" data-category="<?php echo $data['category']->getValue('name') ?>" 
+                    <button id="buy-now" data-category="<?php echo $data['category']->getValue('name') ?>" data-form_action ="<?php echo APP_URL ?>orders/add"
                         data-product="<?php echo preg_replace('/[\"]/', '\'', json_encode([
                             'id' => $data['product']->getValue('id'), 
                             'name' => $data['product']->getValue('name'), 
@@ -62,8 +62,25 @@
     <h2 class="h4">Product Description</h2>
     <p><?php echo $data['product']->getValueEncoded('description') ?></p>
 </div>
+<!-- 6caa320f968856f8f8e717377e9f55e9 -->
+<!-- <div class="order-form-success-wrap">
+    
+    <div class="order-form-success-container">
+        <button id="close-btn">X</button>
 
-<div class="order-form-wrap">
+        <h1 class="h4">Sucess Order</h1>
+
+        <div class="success-body">
+            <h2>Your Traking Code:</h2>
+            <p>6caa320f968856f8f8e717377e9f55e9</p>
+            <p>Please save this tracking code. You can track your order later with this code in the following link.<a href="orders/track">Track Order</a></p>
+        </div>
+
+    </div>
+
+</div> -->
+
+<!-- <div class="order-form-wrap">
     <div class="order-form-container">
         <button id="close-btn">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
@@ -111,7 +128,7 @@
             <input type="submit">
         </form>
     </div>
-</div>
+</div> -->
 
 <script src="<?php echo APP_URL ?>resources/js/product-detail.js"></script>
 
