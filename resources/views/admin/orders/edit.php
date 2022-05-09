@@ -66,7 +66,7 @@
 
             <form action="<?php echo APP_URL ?>admin/orders/edit/<?php echo $data['order']->getValue('id') ?>" method="post">
                 <input type="hidden" name="id" value="<?php echo $data['order']->getValue('id') ?>">
-                <input type="hidden" name="watch_id" value="<?php echo $data['product']->getValue('id') ?>">
+                <input type="hidden" name="product_id" value="<?php echo $data['product']->getValue('id') ?>">
 
                 <label for="customer-name">Customer Name</label>
                 <input type="text" name="customer_name" id="customer-name" value="<?php echo $data['order']->getValue('customer_name') ?>" required>

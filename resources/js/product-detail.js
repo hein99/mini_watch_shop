@@ -47,7 +47,7 @@ function createOrderSuccess(tracking_code) {
 
     
     let link = document.createElement('a');
-    link.setAttribute('href', 'orders/track');
+    link.setAttribute('href', '/mini_watch_shop/orders/track');
     link.textContent = 'Track Order';
 
     let note = document.createElement('p');
@@ -179,11 +179,11 @@ function createForm(form_action, product) {
     let p_json = product.replaceAll('\'', '"');
     let p_obj = JSON.parse(p_json);
 
-    // Create watch_id 'watch_id'
-    let watch_id = document.createElement('input');
-    watch_id.setAttribute('type', 'hidden');
-    watch_id.setAttribute('name', 'watch_id');
-    watch_id.setAttribute('value', p_obj.id);
+    // Create product_id 'product_id'
+    let product_id = document.createElement('input');
+    product_id.setAttribute('type', 'hidden');
+    product_id.setAttribute('name', 'product_id');
+    product_id.setAttribute('value', p_obj.id);
 
     // Create highlighted_bar 'highlighted_bar'
     let highlighted_bar = document.createElement('div');
@@ -236,7 +236,7 @@ function createForm(form_action, product) {
     let form = document.createElement('form');
     form.setAttribute('action', form_action);
     form.setAttribute('method', 'post');
-    form.appendChild(watch_id);
+    form.appendChild(product_id);
 
     form.appendChild(name_label);
     form.appendChild(name_input);
@@ -263,7 +263,7 @@ function submitOrderForm(event) {
         let customer_name = document.querySelector('.order-form-container #customer-name').value;
         let customer_phone = document.querySelector('.order-form-container #customer-phone').value;
         let customer_address = document.querySelector('.order-form-container #customer-address').value;
-        let watch_id = document.querySelector('.order-form-container input[type="hidden"]').value;
+        let product_id = document.querySelector('.order-form-container input[type="hidden"]').value;
 
 
         var xhttp = new XMLHttpRequest();
@@ -282,7 +282,7 @@ function submitOrderForm(event) {
             }
         };
 
-        let url_query = 'customer_name=' + customer_name + '&customer_phone=' + customer_phone + '&customer_address=' + customer_address + '&watch_id=' + watch_id;
+        let url_query = 'customer_name=' + customer_name + '&customer_phone=' + customer_phone + '&customer_address=' + customer_address + '&product_id=' + product_id;
         xhttp.open("POST", action, true);
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(url_query);
@@ -293,7 +293,7 @@ function submitOrderForm(event) {
 function validateFormFields(event) {
     let form = event.currentTarget.parentNode;
 
-    let required_fields = ['action', 'customer_name', 'customer_phone', 'customer_address', 'watch_id'];
+    let required_fields = ['action', 'customer_name', 'customer_phone', 'customer_address', 'product_id'];
     let missing_fields = [];
 
     let form_fields = [

@@ -12,7 +12,7 @@ class Order Extends DataObject
         'customer_name' => '',
         'customer_phone' => '',
         'customer_address' => '',
-        'watch_id' => '',
+        'product_id' => '',
         'tracking_code' => '',
         'status' => '',
         'created_at' => '',
@@ -36,7 +36,7 @@ class Order Extends DataObject
                 customer_name,
                 customer_phone,
                 customer_address,
-                watch_id,
+                product_id,
                 tracking_code,
                 status,
                 created_at,
@@ -45,7 +45,7 @@ class Order Extends DataObject
                 :customer_name,
                 :customer_phone,
                 :customer_address,
-                :watch_id,
+                :product_id,
                 :tracking_code,
                 \'ordered\',
                 now(),
@@ -55,7 +55,7 @@ class Order Extends DataObject
             $statement->bindValue(':customer_name', $this->data['customer_name'], PDO::PARAM_STR);
             $statement->bindValue(':customer_phone', $this->data['customer_phone'], PDO::PARAM_STR);
             $statement->bindValue(':customer_address', $this->data['customer_address'], PDO::PARAM_STR);
-            $statement->bindValue(':watch_id', $this->data['watch_id'], PDO::PARAM_INT);
+            $statement->bindValue(':product_id', $this->data['product_id'], PDO::PARAM_INT);
             $statement->bindValue(':tracking_code', $this->data['tracking_code'], PDO::PARAM_STR);
             $statement->execute();
 
@@ -145,7 +145,7 @@ class Order Extends DataObject
             customer_name = :customer_name, 
             customer_phone = :customer_phone,
             customer_address = :customer_address,
-            watch_id = :watch_id,
+            product_id = :product_id,
             status = :status,
             modified_at = now()
 
@@ -156,7 +156,7 @@ class Order Extends DataObject
             $statement->bindValue(':customer_name', $this->data['customer_name'], PDO::PARAM_STR);
             $statement->bindValue(':customer_phone', $this->data['customer_phone'], PDO::PARAM_STR);
             $statement->bindValue(':customer_address', $this->data['customer_address'], PDO::PARAM_STR);
-            $statement->bindValue(':watch_id', $this->data['watch_id'], PDO::PARAM_INT);
+            $statement->bindValue(':product_id', $this->data['product_id'], PDO::PARAM_INT);
             $statement->bindValue(':status', $this->data['status'], PDO::PARAM_STR);
             $statement->bindValue(':id', $this->data['id'], PDO::PARAM_INT);
             $statement->execute();

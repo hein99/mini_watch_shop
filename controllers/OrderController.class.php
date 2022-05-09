@@ -26,7 +26,7 @@ class OrderController
     {
         if(isset($_GET['fourth-query']) and $_GET['fourth-query']) {
             if(isset($_POST['action']) and $_POST['action'] == 'Edit') {
-                $required_fields = ['id', 'customer_name', 'customer_phone', 'customer_address', 'watch_id', 'status'];
+                $required_fields = ['id', 'customer_name', 'customer_phone', 'customer_address', 'product_id', 'status'];
                 $missing_fields = [];
                 $error_messages = [];
 
@@ -35,7 +35,7 @@ class OrderController
                     'customer_name' => isset($_POST['customer_name']) ? preg_replace('/[^ \w]/', '', $_POST['customer_name']) : '',
                     'customer_phone' => isset($_POST['customer_phone']) ? preg_replace('/[^\d]/', '', $_POST['customer_phone']) : '',
                     'customer_address' => isset($_POST['customer_address']) ? preg_replace('/[^, \-\w]/', '', $_POST['customer_address']) : '',
-                    'watch_id' => isset($_POST['watch_id']) ? preg_replace('/[^\d]/', '', $_POST['watch_id']) : '',
+                    'product_id' => isset($_POST['product_id']) ? preg_replace('/[^\d]/', '', $_POST['product_id']) : '',
                     'status' => isset($_POST['status']) ? preg_replace('/[^a-z]/', '', $_POST['status']) : '',
                 ]);
 
@@ -49,7 +49,7 @@ class OrderController
 
                 if($error_messages) {
                     $order = Order::getOrder($_GET['fourth-query']);
-                    $product = Product::getProduct($order->getValue('watch_id'));
+                    $product = Product::getProduct($order->getValue('product_id'));
                     $category = Category::getCategory($product->getValue('category_id'));
                     loadView('admin/orders/edit', [
                         'product' => $product,
@@ -65,7 +65,7 @@ class OrderController
 
             } else {
                 $order = Order::getOrder($_GET['fourth-query']);
-                $product = Product::getProduct($order->getValue('watch_id'));
+                $product = Product::getProduct($order->getValue('product_id'));
                 $category = Category::getCategory($product->getValue('category_id'));
                 loadView('admin/orders/edit', [
                     'product' => $product,
@@ -82,14 +82,14 @@ class OrderController
 
     public static function add()
     {
-        $required_fields = ['customer_name', 'customer_phone', 'customer_address', 'watch_id'];
+        $required_fields = ['customer_name', 'customer_phone', 'customer_address', 'product_id'];
         $missing_fields = [];
 
         $order = new Order([
             'customer_name' => isset($_POST['customer_name']) ? preg_replace('/[^ \w]/', '', $_POST['customer_name']) : '',
             'customer_phone' => isset($_POST['customer_phone']) ? preg_replace('/[^\d]/', '', $_POST['customer_phone']) : '',
             'customer_address' => isset($_POST['customer_address']) ? preg_replace('/[^ \w]/', '', $_POST['customer_address']) : '',
-            'watch_id' => isset($_POST['watch_id']) ? preg_replace('/[^0-9]/', '', $_POST['watch_id']) : '',
+            'product_id' => isset($_POST['product_id']) ? preg_replace('/[^0-9]/', '', $_POST['product_id']) : '',
         ]);
 
         foreach($required_fields as $required_field) {
@@ -106,7 +106,7 @@ class OrderController
                 'customer_name' => $order->getValue('customer_name'),
                 'customer_phone' => $order->getValue('customer_phone'),
                 'customer_address' => $order->getValue('customer_address'),
-                'watch_id' => $order->getValue('watch_id'),
+                'product_id' => $order->getValue('product_id'),
                 'tracking_code' => md5($order->getValue('customer_name').time()),
             ]);
 
@@ -126,7 +126,7 @@ class OrderController
 
             if($tracking_code) {
                 $order = Order::getOrderByTrackingCode($tracking_code);
-                $product = Product::getProduct($order->getValue('watch_id'));
+                $product = Product::getProduct($order->getValue('product_id'));
                 $category = Category::getCategory($product->getValue('category_id'));
                 loadView('orders/detail', [
                     'order' => $order,

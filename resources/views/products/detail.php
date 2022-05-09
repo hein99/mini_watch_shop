@@ -112,7 +112,7 @@
         </div>
 
         <form action="<?php echo APP_URL ?>orders/add" method="post">
-            <input type="hidden" name="watch_id" value="<?php echo $data['product']->getValue('id') ?>">
+            <input type="hidden" name="product_id" value="<?php echo $data['product']->getValue('id') ?>">
 
             <label for="customer-name">Name</label>
             <input type="text" name="customer_name" id="customer-name" required>
