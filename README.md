@@ -7,3 +7,7 @@ Step 1. Copy or clone this project folder into your websever document root folde
 Step 2. Create Database with the name of 'mini_watch_shop'
 Step 3. Import Database tables into the mini_watch_shop database using 'mini_watch_shop.sql' this file is included in this project folder.
 Step 4. Change website info and database info in the 'config.php'
+
+# access admin area using following info
+Email : hkk@example.com
+password : password
